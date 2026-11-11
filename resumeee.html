@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>K Roshni - Resume</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; font-family: inherit; }
+
+  :root {
+    --font: Calibri, "Segoe UI", Arial, Helvetica, sans-serif;
+    --navy: #111111;
+    --navy-2: #3a3a3a;
+    --gold: #f5b800;
+    --gold-text: #946b00;
+    --ink: #1e1e1e;
+    --muted: #5c5c5c;
+    --rule: #d9d9d6;
+    --tint: #f5f5f3;
+  }
+
+  body {
+    background: #dcdcdc;
+    font-family: var(--font);
+    font-size: 10.5pt;
+    color: var(--ink);
+    line-height: 1.45;
+    padding: 24px 12px;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    width: 210mm;
+    height: 297mm;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    padding: 10mm 12mm 9mm;
+    display: flex;
+    flex-direction: column;
+    gap: 4.5mm;
+  }
+
+  /* ================= HEADER ================= */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 4mm;
+    border-bottom: 4px solid var(--navy);
+    position: relative;
+  }
+  header::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: -4px;
+    width: 38mm; height: 4px;
+    background: var(--gold);
+  }
+  .name h1 {
+    font-size: 34pt;
+    line-height: 1;
+    font-weight: bold;
+    color: var(--navy);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  .name p {
+    margin-top: 6px;
+    font-size: 11pt;
+    color: var(--muted);
+  }
+  .contact {
+    text-align: right;
+    font-size: 10pt;
+    line-height: 1.6;
+  }
+  .contact b {
+    color: var(--gold-text);
+    font-size: 8.5pt;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-right: 6px;
+  }
+  .contact a { color: var(--ink); text-decoration: none; }
+
+  /* ================= SUMMARY ================= */
+  .summary {
+    border-left: 4px solid var(--gold);
+    background: var(--tint);
+    padding: 2.5mm 5mm;
+    font-size: 10.5pt;
+    line-height: 1.45;
+  }
+
+  /* ================= SECTION HEADING ================= */
+  .sec-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 10.5pt;
+    font-weight: bold;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 3.5mm;
+  }
+  .sec-title::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+  .sec-title::before {
+    content: "";
+    width: 10px; height: 10px;
+    background: var(--gold);
+  }
+
+  /* ================= MIDDLE ROW ================= */
+  .mid {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 9mm;
+  }
+
+  /* ---- Education timeline ---- */
+  .timeline { position: relative; padding-left: 20px; }
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 4px; top: 6px; bottom: 6px;
+    width: 2px;
+    background: var(--rule);
+  }
+  .t-item { position: relative; margin-bottom: 3.5mm; }
+  .t-item:last-child { margin-bottom: 0; }
+  .t-item::before {
+    content: "";
+    position: absolute;
+    left: -20px; top: 5px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid var(--navy);
+  }
+  .t-item.current::before { background: var(--gold); border-color: var(--gold); }
+  .t-item .when { font-size: 9.5pt; color: var(--gold-text); font-weight: bold; letter-spacing: 0.5px; }
+  .t-item h3 { font-size: 11.5pt; color: var(--navy); line-height: 1.3; }
+  .t-item .where { font-size: 10.5pt; }
+  .t-item .meta { font-size: 10pt; color: var(--muted); }
+  .t-item .score {
+    display: inline-block;
+    background: var(--navy);
+    color: #fff;
+    font-weight: bold;
+    font-size: 9.5pt;
+    padding: 0 7px;
+    margin-right: 6px;
+  }
+
+  /* ---- Case competition cards ---- */
+  .cards { display: flex; flex-direction: column; gap: 3mm; }
+  .card {
+    border: 1px solid var(--rule);
+    border-left: 4px solid var(--navy);
+    background: var(--tint);
+    padding: 7px 12px 8px;
+  }
+  .card h3 { font-size: 11pt; color: var(--navy); }
+  .card p { font-size: 10pt; margin-top: 1px; }
+  .card.hero { border-left-color: var(--gold); }
+  .card.hero .stat {
+    font-size: 9pt;
+    font-weight: bold;
+    color: var(--gold-text);
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+  }
+
+  /* ================= LEADERSHIP ================= */
+  .lead-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4mm 9mm;
+  }
+  .lead {
+    border-top: 3px solid var(--navy);
+    padding-top: 7px;
+  }
+  .lead h3 { font-size: 11.5pt; color: var(--navy); }
+  .lead .tag { font-size: 10pt; font-style: italic; color: var(--muted); }
+  .lead p { margin-top: 2px; font-size: 10.5pt; }
+
+  /* ================= SKILLS BAND ================= */
+  .skills {
+    margin-top: auto;
+    background: var(--navy);
+    color: #f1f1ef;
+    padding: 4mm 7mm 5mm;
+    border-bottom: 4px solid var(--gold);
+  }
+  .skills .sec-title { color: #fff; margin-bottom: 3mm; }
+  .skills .sec-title::after { background: var(--navy-2); }
+  .skill-cols {
+    display: grid;
+    grid-template-columns: 1.3fr 1.1fr 1.1fr 0.9fr 0.8fr;
+    gap: 6mm;
+  }
+  .skill-cols h4 {
+    font-size: 9pt;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #f5b800;
+    margin-bottom: 3px;
+  }
+  .skill-cols p { font-size: 10pt; line-height: 1.4; }
+
+  /* ================= PRINT ================= */
+  @page { size: A4; margin: 0; }
+  @media print {
+    body { background: none; padding: 0; }
+    .page { box-shadow: none; margin: 0; overflow: hidden; }
+  }
+
+  @media screen and (max-width: 800px) {
+    .page { width: 100%; height: auto; padding: 16px; }
+    header { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .contact { text-align: left; }
+    .name h1 { font-size: 24pt; }
+    .mid, .lead-grid { grid-template-columns: 1fr; }
+    .skill-cols { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ============ HEADER ============ -->
+  <header>
+    <div class="name">
+      <h1>K Roshni</h1>
+      <p>Bhubaneswar, Odisha</p>
+    </div>
+    <div class="contact">
+      <div><b>Email</b><a href="mailto:roshnikarad1809@gmail.com">roshnikarad1809@gmail.com</a></div>
+      <div><b>College</b><a href="mailto:k.roshni26@iimb.ac.in">k.roshni26@iimb.ac.in</a></div>
+      <div><b>Phone</b>6370170567</div>
+      <div><b>LinkedIn</b><a href="https://linkedin.com/in/k-roshni-a964b1338" target="_blank">linkedin.com/in/k-roshni-a964b1338</a></div>
+    </div>
+  </header>
+
+  <!-- ============ SUMMARY ============ -->
+  <p class="summary">A dedicated and passionate student with a strong drive to learn and explore new things. Capable of working well in teams and coordinating tasks. Looking for opportunities to broaden my knowledge and contribute value.</p>
+
+  <!-- ============ EDUCATION + CASE COMPETITIONS ============ -->
+  <div class="mid">
+
+    <section>
+      <div class="sec-title">Academic Qualifications</div>
+      <div class="timeline">
+
+        <div class="t-item current">
+          <div class="when">AUG 2026 &ndash; AUG 2029</div>
+          <h3>BBA in Digital Business and Entrepreneurship</h3>
+          <div class="where">IIM Bangalore</div>
+          <div class="meta"><span class="score">Pursuing</span>Expected completion: Aug 2029</div>
+        </div>
+
+        <div class="t-item current">
+          <div class="when">SEP 2025 &ndash; MAY 2028</div>
+          <h3>B.Com. (Honours), Accounting and Business/Management</h3>
+          <div class="where">BJB Autonomous College</div>
+          <div class="meta"><span class="score">Pursuing</span>Expected completion: May 2028</div>
+        </div>
+
+        <div class="t-item">
+          <h3>12th (CBSE)</h3>
+          <div class="where">DAV Public School, Unit-VII</div>
+          <div class="meta"><span class="score">97%</span>Ranked 2nd in class; 100/100 in Accountancy and Business Studies</div>
+        </div>
+
+        <div class="t-item">
+          <h3>10th</h3>
+          <div class="where">Shree Krishna International School</div>
+          <div class="meta"><span class="score">91.6%</span></div>
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-title">Case Competitions &amp; Recognition</div>
+      <div class="cards">
+        <div class="card hero">
+          <div class="stat">Top 7 of 1,400+ teams</div>
+          <h3>IIT Delhi Masterminds</h3>
+          <p>Qualified among the top 7 teams out of 1,400+ teams in a case competition.</p>
+        </div>
+        <div class="card">
+          <h3>Case Verse 2.0, NIT Rourkela</h3>
+          <p>Participated in a case competition focused on business problem-solving and case analysis.</p>
+        </div>
+        <div class="card">
+          <h3>EY CAFTA</h3>
+          <p>Participant. Learnt about banking and treasury through the case competition.</p>
+        </div>
+        <div class="card">
+          <h3>Sambad Digital</h3>
+          <p>Received a medal recognising Class XII board-examination performance.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ============ LEADERSHIP ============ -->
+  <section>
+    <div class="sec-title">Leadership &amp; Entrepreneurial Experience</div>
+    <div class="lead-grid">
+      <div class="lead">
+        <h3>Head Girl</h3>
+        <div class="tag">School Leadership</div>
+        <p>Held a student leadership position, with responsibilities associated with representing students and supporting school activities.</p>
+      </div>
+      <div class="lead">
+        <h3>Business Experience</h3>
+        <div class="tag">School Exhibition</div>
+        <p>Helped run a food stall at a school exhibition, gaining practical exposure to customer interaction, sales, coordination and day-to-day execution.</p>
+      </div>
+      <div class="lead">
+        <h3>Model United Nations (MUN)</h3>
+        <div class="tag">DN Wisdom School, 2023</div>
+        <p>Participated in a Model United Nations conference.</p>
+      </div>
+      <div class="lead">
+        <h3>Entrepreneurship &amp; English Seminars</h3>
+        <div class="tag">Class XII</div>
+        <p>Took part in entrepreneurship and English seminars.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SKILLS BAND ============ -->
+  <section class="skills">
+    <div class="sec-title">Skills, Interests &amp; Languages</div>
+    <div class="skill-cols">
+      <div>
+        <h4>Core Skills</h4>
+        <p>Analytical thinking, problem-solving, communication, teamwork, organisation and time management.</p>
+      </div>
+      <div>
+        <h4>Technical Skills</h4>
+        <p>Microsoft Excel, Canva, HTML, CSS, Microsoft Office and AI tools.</p>
+      </div>
+      <div>
+        <h4>Interests</h4>
+        <p>Business strategy, case analysis, consulting and finance.</p>
+      </div>
+      <div>
+        <h4>Hobbies</h4>
+        <p>Cooking, dancing and learning new things.</p>
+      </div>
+      <div>
+        <h4>Languages</h4>
+        <p>English, Hindi, Odia and Telugu.</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+</body>
+</html>
