@@ -1,2 +1,0 @@
-# resume
-web development assignment
