@@ -1,0 +1,241 @@
+/* 1. COLOURS AND SPACING: stored once here, so they can be changed in one place and the whole page updates. */
+:root {
+  --black: #111111;        /* page background */
+  --white: #ffffff;        /* main text */
+  --muted: #cfcfcb;        /* softer text for dates and details */
+  --grey: #4a4a4a;         /* thin outlines around cards */
+  --line: #2b2b2b;         /* faint lines between sections */
+  --accent: #f5b800;       /* the main yellow: buttons, years, bars */
+  --accent-light: #ffd966; /* lighter yellow: button hover and group headings */
+  --accent-dark: #8a6600;  /* darker yellow: outline of the project card */
+  --small: 8px;            /* space between things that belong together */
+  --medium: 24px;          /* space between groups */
+  --large: 64px;           /* space between sections */
+}
+
+/* 2. BASIC PAGE SETTINGS: element selectors that style every heading, link and picture. */
+* { box-sizing: border-box; }       /* padding stays inside an element's width */
+html { scroll-padding-top: 72px; }  /* the sticky menu will not cover a heading after a menu click */
+body {
+  margin: 0;
+  font-family: "Poppins", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--white);
+  background: var(--black);
+}
+h1, h2, h3, h4, p, ul { margin: 0; }
+ul { padding: 0; list-style: none; }
+img { display: block; max-width: 100%; height: auto; border-radius: 8px; }
+p, li { max-width: 70ch; }          /* keeps lines of text easy to read */
+
+/* 3. HEADINGS: every h2 gets a short yellow bar underneath it. */
+h1 { font-size: 6rem; line-height: 1; font-weight: 700; }
+h2 { font-size: 1.75rem; line-height: 1.2; font-weight: 700; margin-bottom: var(--medium); }
+h2::after {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 4px;
+  margin-top: var(--small);
+  background: var(--accent);
+}
+h3 { font-size: 1.125rem; line-height: 1.3; font-weight: 600; }
+
+/* 4. LINKS: yellow underline, a yellow background when hovered, and a clear outline for keyboard users. */
+a {
+  color: inherit;
+  text-decoration: underline var(--accent) 3px;
+  text-underline-offset: 4px;
+}
+a:hover { background: var(--accent); color: var(--black); }
+a:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+a, .button, .card { transition: 0.2s; }  /* a smooth colour change on hover */
+
+/* 5. SECTIONS: each one is centred, at most 1120px wide, with a faint line on top. */
+section {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: var(--large) 24px;
+  border-top: 1px solid var(--line);
+}
+#hero, #facts { border-top: 0; }
+
+/* 6. MENU BAR (flexbox): the name on the left, the links in the middle, the Email me button on the right. */
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--small);
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: var(--small) 24px;
+  position: sticky;                 /* stays at the top while scrolling */
+  top: 0;
+  z-index: 10;
+  background: var(--black);
+}
+.nav-links { display: flex; flex: 1; flex-wrap: wrap; justify-content: center; }
+.brand, .nav-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;                 /* big enough to tap on a phone */
+  padding: 0 12px;
+  text-decoration: none;
+}
+.brand { color: var(--accent); font-weight: 700; margin-left: -12px; }
+.nav-link { color: var(--muted); font-size: 0.875rem; }
+.nav-link:hover { color: var(--accent); background: none; }
+
+/* 7. HERO: the very large name on the left, the sentence and buttons on the right. */
+#hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--medium) var(--large);
+  padding-top: var(--medium);
+}
+.location { margin-top: var(--small); color: var(--muted); }
+.hero-side { flex: 1 1 320px; max-width: 420px; }
+.statement { max-width: 40ch; font-size: 1.25rem; line-height: 1.4; font-weight: 600; }
+
+/* 8. BUTTONS: yellow with black text. The secondary ones are outlined in white. */
+.actions { display: flex; flex-wrap: wrap; gap: var(--small); margin-top: var(--medium); }
+.button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 var(--medium);
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  background: var(--accent);
+  color: var(--black);
+  font-weight: 600;
+  text-decoration: none;
+}
+.button-secondary { background: transparent; color: var(--white); border-color: var(--white); }
+.button:hover { background: var(--accent-light); color: var(--black); border-color: var(--accent-light); }
+
+/* 9. THREE BIG NUMBERS */
+#facts { padding-top: 0; }
+.facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--medium); }
+.big { display: block; color: var(--accent); font-size: 2.75rem; line-height: 1.1; font-weight: 700; }
+.facts span { display: block; margin-top: var(--small); color: var(--muted); }
+
+/* 10. ABOUT ME: the statement on the left, the portrait and paragraph on the right. */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--large); align-items: start; }
+.pull { font-size: 1.75rem; line-height: 1.3; font-weight: 600; }
+.portrait { width: 180px; height: 225px; object-fit: cover; margin-bottom: var(--medium); }
+
+/* 11. EDUCATION TIMELINE: a big yellow year on the left, a yellow line with a dot, the details on the right. */
+.step { display: grid; grid-template-columns: 7rem 1fr; gap: 0 var(--medium); max-width: none; }
+.year { color: var(--accent); font-size: 2.5rem; line-height: 1.1; font-weight: 700; }
+.step-body {
+  position: relative;
+  padding: 0 0 40px var(--medium);
+  border-left: 2px solid var(--accent);   /* this is the timeline line */
+}
+.step:last-child .step-body { padding-bottom: 0; }
+.step-body::before {                      /* the dot on the line */
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: -9px;
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  background: var(--black);
+}
+.current .step-body::before { background: var(--accent); }  /* a filled dot means I'm studying here now */
+.step-body p { margin-top: var(--small); }
+.meta { color: var(--muted); }
+.pics { display: flex; flex-wrap: wrap; gap: var(--small); margin-top: var(--medium); }
+.pics img { width: 240px; }
+
+/* 12. LEADERSHIP: each row has a picture on the left, the text on the right and a thin line between rows. */
+.rows { border-bottom: 1px solid var(--grey); }
+.row {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: var(--medium);
+  align-items: start;
+  padding: var(--medium) 0;
+  border-top: 1px solid var(--grey);
+}
+.row p { margin-top: var(--small); }
+
+/* 13. CARDS: flat boxes with a thin outline. The grid fits as many columns as the screen has room for. */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--medium); }
+.card { border: 1px solid var(--grey); border-radius: 12px; padding: var(--medium); }
+.card:hover { border-color: var(--accent); }
+.card p { margin-top: var(--small); }
+.card > img { margin-top: var(--medium); }
+
+/* 14. PROJECT CARD: the logo beside the text, with a dark-yellow outline. */
+.project { display: flex; align-items: flex-start; gap: var(--medium); border-color: var(--accent-dark); }
+.logo { width: 160px; flex-shrink: 0; }
+
+/* 15. SKILLS: cards under light-yellow group headings. */
+.group { margin-bottom: var(--medium); color: var(--accent-light); }
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: var(--medium); }
+.skills-grid + .group { margin-top: var(--large); }
+.skill h4 { font-size: 1.125rem; line-height: 1.3; font-weight: 600; }
+.skill p { color: var(--muted); }
+
+/* 16. RESUME: the white paper sheet. */
+.resume-intro { margin-bottom: var(--medium); }
+.sheet {
+  max-width: 210mm;                 /* the width of an A4 page */
+  padding: 12mm;
+  background: var(--white);
+  color: var(--black);
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+.sheet-name { font-size: 1.75rem; }
+.sheet-contact { display: flex; flex-wrap: wrap; gap: 0 var(--medium); margin-top: var(--small); color: var(--grey); }
+.sheet-profile { margin-top: var(--medium); }
+.sheet h4 { margin: var(--medium) 0 var(--small); padding-bottom: 4px; border-bottom: 1px solid var(--muted); font-size: 1rem; }
+.sheet-list { padding-left: 18px; list-style: disc; }
+.sheet-list li { margin-top: 4px; }
+
+/* 17. CONTACT: a big closing line, the email in big type and the buttons. */
+#contact h2 { max-width: 20ch; font-size: 3rem; line-height: 1.1; }
+.big-email { display: inline-block; font-size: 1.75rem; font-weight: 600; overflow-wrap: anywhere; }
+
+/* 18. PRINT: only the resume is printed, on one A4 page, in black text on white. */
+@page { size: A4; margin: 12mm; }
+@media print {
+  body { background: #fff; }
+  .nav, section:not(#resume), .resume-intro { display: none; }
+  #resume { padding: 0; border: 0; }
+  .sheet { max-width: none; padding: 0; font-size: 9pt; line-height: 1.4; }
+  .sheet, .sheet * { color: #000; }
+}
+
+/* 19. PHONES: screens narrower than 700px get one column and smaller text. */
+@media (max-width: 699px) {
+  html { scroll-padding-top: 140px; }
+  section { padding: 40px 16px; }
+  .nav { flex-direction: column; align-items: flex-start; padding: var(--small) 16px; }
+  .nav-links { justify-content: flex-start; }
+  h1 { font-size: 3.5rem; }
+  #hero { flex-direction: column; align-items: flex-start; }
+  .about-grid, .facts, .row { grid-template-columns: 1fr; gap: var(--medium); }
+  .big { font-size: 2.5rem; }
+  .step { grid-template-columns: 1fr; }
+  .year { margin-bottom: var(--small); font-size: 2rem; }
+  .project { flex-direction: column; }
+  .pull { font-size: 1.375rem; }
+  #contact h2 { font-size: 2rem; }
+  .big-email { font-size: 1.25rem; }
+  .sheet { padding: var(--medium) 16px; }
+}
+
+/* 20. REDUCED MOTION: turns off the hover colour fade for people who ask for less motion. */
+@media (prefers-reduced-motion: reduce) {
+  a, .button, .card { transition: none; }
+}
